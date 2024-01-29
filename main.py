@@ -39,8 +39,8 @@ class Record:
     birthday = property(get_birthday, set_birthday)
 
     def days_to_birthday(self):
-        if not self.birthday:
-            raise ValueError("This contact doesn't have attribute birthday")
+        if not self.__birthday:
+            raise ValueError("This contact have no attribute birthday")
 
         today = datetime.now().date()
         birthday = datetime(year=today.year, month=self.__birthday.month, day=self.__birthday.day).date()
@@ -52,7 +52,7 @@ class Record:
             days_till_birthday = (birthday - today).days
             return days_till_birthday
         if birthday == today:
-            return "Todays is the birthday"
+            return "Today is the birthday"
 
     def get_info(self):
         phones_info = ''
@@ -144,6 +144,8 @@ def main():
     try:
         book = AddressBook()
         john_record = Record("John")
+        print(john_record.days_to_birthday())
+
         print(john_record.get_info())
         john_record.birthday = '2011-01-30'
         print(john_record.birthday)
