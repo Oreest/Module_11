@@ -23,10 +23,10 @@ class Phone(Field):
 
 
 class Record:
-    def __init__(self, name):
+    def __init__(self, name, birthday = None):
         self.name = Name(name)
         self.phones = []
-        self.__birthday = None
+        self.__birthday = datetime.strptime(birthday, '%Y-%m-%d').date() if birthday else None
 
     def get_birthday(self):
         return self.__birthday
@@ -143,7 +143,7 @@ class AddressBook(UserDict):
 def main():
     try:
         book = AddressBook()
-        john_record = Record("John")
+        john_record = Record("John", '2011-01-30')
         print(john_record.days_to_birthday())
 
         print(john_record.get_info())
